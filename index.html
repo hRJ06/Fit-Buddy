@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 
+    - primary meta tags
+  -->
+    <title>Health-Buddy - The ultimate healthcare companion</title>
+    <meta name="title" content="Health-Buddy - The ultimate healthcare companion">
+    <meta name="description" content="A personal health care assitant">
+
+    <!-- 
+    - favicon
+  -->
+    <link rel="shortcut icon" href="assets\images\title.png" type="image/svg+xml">
+
+    <!-- 
+    - google font link
+  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poly:ital@0;1&display=swap" rel="stylesheet">
+    <!-- 
+    - custom css link
+  -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+
+    <!-- 
+    - preload images
+  -->
+    <link rel="preload" as="image" href="./assets\images\hospital-login.png">
+    <link rel="preload" as="image" href="./assets/images/pattern-2.svg">
+    <link rel="preload" as="image" href="./assets/images/pattern-3.svg">
+
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+
+
+    <style>
+        /* Define the custom cursor animation */
+        .typed-cursor {
+            opacity: 1;
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<style>
+    .footer-list {
+        display: block;
+        margin-bottom: 20px;
+    }
+
+    .footer-list-title {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    ul li {
+        margin-bottom: 10px;
+    }
+
+    .footer-link {
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .hover-2:hover {
+        color: #f63;
+    }
+</style>
+
+<body id="top">
+
+    <!-- 
+    - #HEADER
+  -->
+    <df-messenger intent="WELCOME" chat-title="Mediquity" agent-id="31a00028-252e-455b-aa20-4b834bf85a25"
+        language-code="en"></df-messenger>
+
+    <header class="header " data-header>
+        <div class="container  lg:flex-0  flex flex-col justify-center ">
+
+            <!-- <nav class="navbar mx-auto" data-navbar> -->
+
+            <!-- <div class="navbar-top">
+                    <a href="#" class="logo">
+                        <img src="./assets/images/logo.png" width="160" height="46" alt="Heath Buddy">
+                    </a>
+
+                    <button class="nav-close-btn" aria-label="close menu" data-nav-toggler>
+                        <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+                    </button>
+                </div> -->
+
+            <ul class="navbar-list uppercase tracking-[1.5px] lg:flex-0 flex lg:flex-row flex-col mx-auto">
+
+                <li>
+                    <a href="/index.html"
+                        class="navbar-link hover-1 hover:underline underline-offset-4 first-letter:text-3xl lg:ml-0 ml-[15%]"
+                        data-nav-toggler>Home</a>
+                </li>
+
+                <li>
+                    <a href="/contact1.html"
+                        class="navbar-link hover-1 hover:underline underline-offset-4 first-letter:text-3xl"
+                        data-nav-toggler>Contact</a>
+                </li>
+
+                <li>
+                    <a href="/contact1.html"
+                        class="navbar-link hover-1 hover:underline underline-offset-4 first-letter:text-3xl"
+                        data-nav-toggler>Services</a>
+                </li>
+
+                <li>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdjrOVqQk_65ywZNGShHubc1eibTaMHyE-vkvCTHBlzig0aNw/viewform?embedded=true"
+                        class="navbar-link hover-1 hover:underline underline-offset-4 first-letter:text-3xl"
+                        data-nav-toggler>Feedback</a>
+                </li>
+
+            </ul>
+
+            </nav>
+
+        </div>
+    </header>
+
+
+
+
+
+    <main>
+        <article>
+
+            <!-- 
+        - #HERO
+      -->
+
+            <section class="hero lg:mt-0 mt-[7%]" id="home " aria-label="home">
+                <div class="container">
+
+                    <div class="hero-content  lg:text-left text-center">
+
+                        <h1 class="headline headline-1 section-title tracking-wide">
+                            I'm <br /><span class="role span"></span>
+                        </h1>
+
+                        <p class="hero-text text-justify text-[1.2rem] tracking-[1.3px] lg:p-0 p-6">
+                            Take control of your health journey with <span
+                                class="uppercase inline-block font-bold hover:underline underline-offset-4">Mediquity</span>
+                            - the intelligent tool that
+                            streamlines every step, from diagnosis to treatment and beyond.
+                        </p>
+
+                        <!-- <div class="input-wrapper">
+
+              <input type="email" name="email_address" placeholder="Type your email address" required
+                class="input-field" autocomplete="off">
+
+              <button class="btn btn-primary">
+                <span class="span">Subscribe</span>
+
+                <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+              </button>
+
+            </div> -->
+
+                    </div>
+
+                    <div class="hero-banner lg:-mt-0 -mt-[25%]">
+
+                        <img src="assets\images\hospital-login.png" width="327" height="490" alt="Health Buddy"
+                            class="w-100">
+
+                        <img src="./assets/images/pattern-2.svg" width="27" height="26" alt="shape"
+                            class="shape shape-1">
+
+                        <img src="./assets/images/pattern-3.svg" width="27" height="26" alt="shape"
+                            class="shape shape-2">
+
+                    </div>
+
+                    <img src="./assets/images/shadow-1.svg" width="500" height="800" alt="" class="hero-bg hero-bg-1">
+
+                    <img src="./assets/images/shadow-2.svg" width="500" height="500" alt="" class="hero-bg hero-bg-2">
+
+                </div>
+            </section>
+
+
+
+
+
+            <!-- 
+        - #TOPICS
+      -->
+
+            <section class="topics" id="topics" aria-labelledby="topic-label">
+                <div class="container max-w-[65%] mx-auto">
+
+                    <div class="card topic-card flex lg:flex-row flex-col space-evenly">
+
+
+
+                        <ul class="lg:flex gap-6  lg:items-baseline" data-slider-container>
+
+                            <li class="slider-item poly-regular rounded-md">
+                                <a href="tumor.html" class="slider-card">
+
+                                    <figure class="slider-banner img-holder rounded-[10px]"
+                                        style="--width: 507; --height: 600;">
+                                        <img src="./assets/images/brain.png" width="507" height="618" loading="lazy"
+                                            alt="Sport" class="img-cover">
+                                    </figure>
+
+                                    <div class="slider-content">
+
+                                        <span class="slider-title uppercase tracking-[1.5px] w-full text-4xl">Brain
+                                            Tumor
+                                        </span>
+
+
+                                        <p class="slider-subtitle tracking-[1.3px] lg:block hidden">CT scan
+                                            diagnosis made easy -
+                                            simply upload your
+                                            scans and let our brain tumor detector do the rest </p>
+                                    </div>
+
+                                </a>
+                            </li>
+
+                            <li class="slider-item poly-regular rounded-md">
+                                <a href="/eye_index.html" class="slider-card">
+
+                                    <figure class="slider-banner img-holder rounded-[10px]"
+                                        style="--width: 507; --height: 618;">
+                                        <img src="assets\images\eye.jpeg" width="507" height="618" loading="lazy"
+                                            alt="Travel" class="img-cover">
+                                    </figure>
+
+                                    <div class="slider-content">
+                                        <span
+                                            class="slider-title uppercase tracking-[1.5px] text-4xl lg:ml-[0] ">Cataract
+                                        </span>
+
+                                        <p class="slider-subtitle tracking-[1.3px] lg:block hidden ">Easy uploads,
+                                            our detector simplifies the process and delivers accurate
+                                            outcomes</p>
+                                    </div>
+
+                                </a>
+                            </li>
+
+                            <li class="slider-item poly-regular ">
+                                <a href="/lung_index.html" class="slider-card">
+
+                                    <figure class="slider-banner img-holder rounded-[10px]"
+                                        style="--width: 507; --height: 618;">
+                                        <img src="assets\images\Lung-image.jpg" width="507" height="618" loading="lazy"
+                                            alt="Movie" class="img-cover">
+                                    </figure>
+
+                                    <div class="slider-content">
+                                        <span class="slider-title uppercase tracking-[1.5px] text-4xl">Pneumonia</span>
+
+                                        <p class="slider-subtitle tracking-[1.3px] lg:block hidden">Effortless scans –
+                                            our lung detector delivers accurate results, simplifying health management
+                                        </p>
+                                    </div>
+
+                                </a>
+                            </li>
+
+
+                        </ul>
+                    </div>
+
+                </div>
+
+                </div>
+            </section>
+
+            <footer class="max-w-[65%] mx-auto">
+                <div class="container ">
+                    <div class="card footer">
+
+                        <div class="section footer-top">
+
+                            <div class="footer-brand">
+
+                                <!-- <a href="#" class="logo">
+                                    <img src="./assets/images/logo.png" width="160" height="46" loading="lazy"
+                                        alt="Health Buddy logo">
+                                </a> -->
+                                <p
+                                    class="footer-list-title uppercase tracking-[2px] lg:text-left text-center first-letter:text-4xl">
+                                    About</p>
+                                <p class="text-justify lg:m-0 mx-auto max-w-[280px] text-[1.275rem] tracking-[1.1px]">
+                                    Mediquity is a platform that provides various healthcare services including tumor
+                                    detection, retina scanning, lung detection, and patient report analysis. Our mission
+                                    is to help people live their healthier lives.
+
+                                </p>
+
+                            </div>
+
+                            <!-- <div class="footer-list">
+
+                                <p class="footer-list-title">Services</p>
+
+                                <ul>
+                                    <li>
+                                        <a href="#" class="footer-link hover-2">Tumor Detection</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="footer-link hover-2">Retina Scanning</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="footer-link hover-2">Lung Detection</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="footer-link hover-2">Patient Report Analysis</a>
+                                    </li>
+                                </ul>
+
+                            </div> -->
+
+                            <div class="footer-list">
+
+                                <p
+                                    class="footer-list-title uppercase tracking-[2px] lg:text-left text-center first-letter:text-4xl">
+                                    Team</p>
+
+                                <li>
+                                    <a href="https://www.linkedin.com/in/abhisheksharma7389/" target="_blank"
+                                        class="footer-link hover-2 text-justify lg:m-0 mx-auto max-w-[280px] text-[1.275rem] tracking-[1.1px] uppercase">1.
+                                        Aritra Saha</a>
+                                </li>
+                                <li>
+                                    <a href="https://github.com/Abhishek-Mallick" target="_blank"
+                                        class="footer-link hover-2 text-justify lg:m-0 mx-auto max-w-[280px] text-[1.275rem] tracking-[1.1px] uppercase">2.
+                                        Hindol Roy</a>
+                                </li>
+                                </ul>
+                                <ul></ul>
+                                <li>
+                                    <a href="https://github.com/Alpha-022" target="_blank"
+                                        class="footer-link hover-2 text-justify lg:m-0 mx-auto max-w-[280px] text-[1.275rem] tracking-[1.1px] uppercase">3.
+                                        Debarka Chakrabarty</a>
+                                </li>
+                                <li>
+                                    <a href="https://github.com/Abhishek-kumar-202063" target="_blank"
+                                        class="footer-link hover-2 text-justify lg:m-0 mx-auto max-w-[280px] text-[1.275rem] tracking-[1.1px] uppercase">4.
+                                        Soubhagya Mukherjee</a>
+                                </li>
+                                </ul>
+
+
+
+
+                            </div>
+
+                            <div class="footer-list mx-auto">
+
+                                <p
+                                    class="footer-list-title uppercase tracking-[2px] lg:text-left text-center first-letter:text-4xl">
+                                    Newsletter</p>
+                                <form class="flex items-center justify-center space-x-2 mb-4 rounded-md lg:flex-row flex-col gap-4">
+                                    <input type="email" name="email" placeholder="Enter your email" required
+                                        class="p-4 rounded-lg w-[200px] placeholder:text-[1.1rem] placeholder:[1.1px] placeholder:tracking-[1.2px] placeholder:uppercase">
+                                    <button type="submit"
+                                        class="p-4 text-white rounded-bg bg-blue-600 focus:outline-none focus:bg-blue-600 transition duration-300 uppercase rounded-[5px] tracking-[1.5px] text-xl">Subscribe</button>
+                                </form>
+                                <p class="text-justify lg:m-0 mx-auto max-w-[280px] text-[1.075rem] tracking-[1.1px]">
+                                    Subscribe to our newsletter to receive updates and news about our healthcare
+                                    services.</p>
+
+                            </div>
+
+                            <!-- <div class="footer-bottom">
+                                <p
+                                    class="footer-list-title uppercase tracking-[2px] lg:text-left text-center first-letter:text-4xl">
+                                    Sign Up for Newsletter</p>
+                                <form class="flex items-center justify-center space-x-2 mb-4">
+                                    <input type="email" name="email" placeholder="Enter your email" required
+                                        class="p-2 border border-gray-300 rounded-md w-64 focus:outline-none focus:border-blue-500">
+                                    <button type="submit"
+                                        class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600 transition duration-300">Sign
+                                        Up</button>
+                                </form>
+                                <p class="text-justify lg:m-0 mx-auto max-w-[280px] text-[1.075rem] tracking-[1.1px]">
+                                    Subscribe to our newsletter to receive updates and news about our healthcare
+                                    services.</p>
+                            </div> -->
+
+                        </div>
+
+                    </div>
+                </div>
+            </footer>
+
+
+
+
+            <!-- 
+    - #BACK TO TOP
+  -->
+
+
+
+
+
+            <!-- 
+    - custom js link
+  -->
+            <script src="./assets/js/script.js"></script>
+
+            <!-- 
+    - ionicon link
+  -->
+            <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+            <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+            <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+            <script>
+                var typeData = new Typed(".role", {
+                    strings: [
+                        "Health Buddy",
+                    ],
+                    loop: true,
+                    showCursor: false,
+                    typeSpeed: 100,
+                    backSpeed: 80,
+                    backDelay: 1000,
+
+                });
+            </script>
+
+</body>
+
+</html>
