@@ -9,16 +9,17 @@ import base64
 
 app = Flask(__name__)
 CORS(app, origins='http://127.0.0.1:5500')
-
-# Load pneumonia prediction model
-pneumonia_model = load_model(r'F:\fitbuddy\Model\PNEUMONIA\Model\Pneumonia.h5')
+pneumonia_model = load_model(r'D:\Project\Fit Buddy\Model\PNEUMONIA\Model\Pneumonia.h5')
 
 # Load diabetes prediction model
-with open(r'F:\fitbuddy\Model\DIABETES\Model\diabetesPredictionModel.pkl', 'rb') as file:
+with open(r'D:\Project\Fit Buddy\Model\DIABETES\Model\diabetesPredictionModel.pkl', 'rb') as file:
     diabetes_model = pkl.load(file)
 
 # Load brain tumor prediction model
-brain_tumor_model = load_model(r'F:\fitbuddy\Model\BRAIN TUMOR\Model\model.h5')
+brain_tumor_model = load_model(r'D:\Project\Fit Buddy\Model\BRAIN TUMOR\Model\model.h5')
+
+# Load your cataract prediction model
+cataract_model = load_model(r'D:\Project\Fit Buddy\Model\CATARACT\Model\model.h5')
 
 def preprocess_image(img):
     img = cv2.resize(img, (150, 150))
@@ -71,7 +72,6 @@ def predict_diabetes():
     
     return jsonify({'result': result})
 
-
 @app.route('/predict/brain_tumor', methods=['POST'])
 def predict_brain_tumor():
     file = request.files['image']
@@ -85,6 +85,39 @@ def predict_brain_tumor():
     predicted_tumor_type = tumor_types[predicted_class]
 
     return jsonify({'prediction': predicted_tumor_type})
+
+# Define the endpoint for predicting cataract
+@app.route('/predict/cataract', methods=['POST'])
+def predict_cataract():
+    # Get the image file from the request
+    file = request.files['image']
+    
+    # Read the image file and decode it
+    img_stream = io.BytesIO(file.read())
+    img = cv2.imdecode(np.frombuffer(img_stream.read(), np.uint8), 1)
+    
+    # Preprocess the image
+    img_array = preprocess_image(img)
+
+    # Make predictions using the model
+    predictions = cataract_model.predict(img_array)
+    predicted_class = np.argmax(predictions)
+    
+    # Debugging print statements
+    print("Predictions:", predictions)
+    print("Predicted class index:", predicted_class)
+
+    # Define the classes (assuming binary classification)
+    classes = ['Normal', 'Cataract']  # Update this list with appropriate class labels
+    
+    # Debugging print statement
+    print("Length of classes list:", len(classes))
+
+    # Get the predicted class label
+    predicted_label = classes[predicted_class]
+
+    # Return the prediction as JSON
+    return jsonify({'prediction': predicted_label})
 
 if __name__ == '__main__':
     app.run(debug=True)
