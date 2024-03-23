@@ -4,6 +4,8 @@ import numpy as np
 import io
 import pickle as pkl
 from tensorflow.keras.models import load_model
+from tensorflow.keras.preprocessing.image import img_to_array
+from tensorflow.keras.applications.efficientnet import preprocess_input
 from flask_cors import CORS
 import base64
 
@@ -12,6 +14,8 @@ CORS(app, origins='http://127.0.0.1:5500')
 
 # Load pneumonia prediction model
 pneumonia_model = load_model(r'F:\fitbuddy\Model\PNEUMONIA\Model\Pneumonia.h5')
+
+cataract_model = load_model(r'F:\fitbuddy\Model\CATARACT\Model\Model.h5')
 
 # Load diabetes prediction model
 with open(r'F:\fitbuddy\Model\DIABETES\Model\diabetesPredictionModel.pkl', 'rb') as file:
@@ -85,6 +89,31 @@ def predict_brain_tumor():
     predicted_tumor_type = tumor_types[predicted_class]
 
     return jsonify({'prediction': predicted_tumor_type})
+
+# @app.route('/predict/cataract', methods=['POST'])
+# def predict():
+#     # Check if image file is present in the request
+#     if 'image' not in request.files:
+#         return jsonify({'error': 'No image found in request'})
+
+#     # Read and preprocess the image
+#     file = request.files['image']
+#     img = cv2.imdecode(np.frombuffer(file.read(), np.uint8), 1)
+#     img = cv2.resize(img, (192, 256))
+#     img = img_to_array(img)
+#     img = np.expand_dims(img, axis=0)
+#     img = preprocess_input(img)
+
+#     # Make prediction
+#     prediction = cataract_model.predict(img)
+
+#     # Process prediction results
+#     if prediction[0][0] > prediction[0][1]:
+#         result = "Normal"
+#     else:
+#         result = "Cataract"
+
+#     return jsonify({'prediction': result})
 
 if __name__ == '__main__':
     app.run(debug=True)
