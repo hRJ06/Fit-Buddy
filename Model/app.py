@@ -4,12 +4,16 @@ import numpy as np
 import io
 import pickle as pkl
 from tensorflow.keras.models import load_model
+from tensorflow.keras.preprocessing.image import img_to_array
+from tensorflow.keras.applications.efficientnet import preprocess_input
 from flask_cors import CORS
 import base64
 
 app = Flask(__name__)
 CORS(app, origins='http://127.0.0.1:5500')
 pneumonia_model = load_model(r'D:\Project\Fit Buddy\Model\PNEUMONIA\Model\Pneumonia.h5')
+
+cataract_model = load_model(r'F:\fitbuddy\Model\CATARACT\Model\Model.h5')
 
 # Load diabetes prediction model
 with open(r'D:\Project\Fit Buddy\Model\DIABETES\Model\diabetesPredictionModel.pkl', 'rb') as file:
