@@ -4,26 +4,24 @@ import numpy as np
 import io
 import pickle as pkl
 from tensorflow.keras.models import load_model
-from tensorflow.keras.preprocessing.image import img_to_array
-from tensorflow.keras.applications.efficientnet import preprocess_input
+from keras.preprocessing.image import ImageDataGenerator
 from flask_cors import CORS
+import tensorflow as tf
 import base64
 
 app = Flask(__name__)
 CORS(app, origins='http://127.0.0.1:5500')
+
+# Load Pneumonia prediction model
 pneumonia_model = load_model(r'D:\Project\Fit Buddy\Model\PNEUMONIA\Model\Pneumonia.h5')
 
-cataract_model = load_model(r'F:\fitbuddy\Model\CATARACT\Model\Model.h5')
-
-# Load diabetes prediction model
-with open(r'D:\Project\Fit Buddy\Model\DIABETES\Model\diabetesPredictionModel.pkl', 'rb') as file:
-    diabetes_model = pkl.load(file)
+# Load Osteoporosis prediction model
+osteoporosis_model = load_model(r'D:\Minor\Model\OSTEOPOROSIS\Model\Osteoporosis.h5')
 
 # Load brain tumor prediction model
 brain_tumor_model = load_model(r'D:\Project\Fit Buddy\Model\BRAIN TUMOR\Model\model.h5')
 
-# Load your cataract prediction model
-cataract_model = load_model(r'D:\Project\Fit Buddy\Model\CATARACT\Model\model.h5')
+image_gen = ImageDataGenerator(preprocessing_function=tf.keras.applications.mobilenet_v2.preprocess_input)
 
 def preprocess_image(img):
     img = cv2.resize(img, (150, 150))
@@ -47,34 +45,6 @@ def predict_pneumonia():
 
     return jsonify({'prediction': classes[predicted_class]})
 
-@app.route('/predict/diabetes', methods=['POST'])
-def predict_diabetes():
-    data = request.json
-    gender = int(data['gender'])
-    age = float(data['age'])
-    hypertension = int(data['hypertension'])
-    heart_disease = int(data['heart_disease'])
-    smoking_history = int(data['smoking_history'])
-    bmi = float(data['bmi'])
-    HbA1c_level = float(data['HbA1c_level'])
-    blood_glucose_level = int(data['blood_glucose_level'])
-    
-    input_data = np.array([[
-        age,
-        gender,
-        hypertension,
-        heart_disease,
-        smoking_history,
-        bmi,
-        HbA1c_level,
-        blood_glucose_level
-    ]])
-    
-    prediction = diabetes_model.predict(input_data)
-    
-    result = "Non-diabetic" if prediction[0] == 0 else "Diabetic"
-    
-    return jsonify({'result': result})
 
 @app.route('/predict/brain_tumor', methods=['POST'])
 def predict_brain_tumor():
@@ -90,38 +60,20 @@ def predict_brain_tumor():
 
     return jsonify({'prediction': predicted_tumor_type})
 
-# Define the endpoint for predicting cataract
-@app.route('/predict/cataract', methods=['POST'])
-def predict_cataract():
-    # Get the image file from the request
-    file = request.files['image']
-    
-    # Read the image file and decode it
-    img_stream = io.BytesIO(file.read())
-    img = cv2.imdecode(np.frombuffer(img_stream.read(), np.uint8), 1)
-    
-    # Preprocess the image
-    img_array = preprocess_image(img)
-
-    # Make predictions using the model
-    predictions = cataract_model.predict(img_array)
-    predicted_class = np.argmax(predictions)
-    
-    # Debugging print statements
-    print("Predictions:", predictions)
-    print("Predicted class index:", predicted_class)
-
-    # Define the classes (assuming binary classification)
-    classes = ['Normal', 'Cataract']  # Update this list with appropriate class labels
-    
-    # Debugging print statement
-    print("Length of classes list:", len(classes))
-
-    # Get the predicted class label
-    predicted_label = classes[predicted_class]
-
-    # Return the prediction as JSON
-    return jsonify({'prediction': predicted_label})
+@app.route('/predict/osteoporosis', methods=['POST'])
+def predict_osteoporosis():
+    if 'image' not in request.files:
+        return jsonify({'error': 'No image file provided'})
+    image_file = request.files['image']
+    image = cv2.imdecode(np.frombuffer(
+        image_file.read(), np.uint8), cv2.IMREAD_COLOR)
+    image = cv2.resize(image, (224, 224))
+    image = image_gen.standardize(image)
+    image = np.expand_dims(image, axis=0)
+    pred = osteoporosis_model.predict(image)
+    class_labels = ['Healthy', 'Osteoporosis']
+    pred_class = class_labels[np.argmax(pred)]
+    return jsonify({'prediction': pred_class})
 
 if __name__ == '__main__':
     app.run(debug=True)
