@@ -4,8 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fit Buddy</title>
+    <title>Health Buddy</title>
     <link rel="stylesheet" href="Disease.css">
+    <title>Fit Buddy</title>
+    <link rel="stylesheet" href="disease.css">
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -34,7 +36,7 @@
 <body>
 
     <div class="container mx-auto">
-        <h1 class="heading uppercase tracking-[2px] text-center">Brain Tumor Detection</h1>
+        <h1 class="heading uppercase tracking-[2px] text-center">Pneumonia Detection</h1>
         <div class="box">
             <div id="label-container"></div>
             <!-- Hidden input field to trigger file selection -->
@@ -85,7 +87,7 @@
                 imgArea.appendChild(img);
 
                 // Make AJAX request to server for prediction
-                fetch('http://127.0.0.1:5000/predict/brain_tumor', {
+                fetch('http://127.0.0.1:5000/predict/pneumonia', {
                     method: 'POST',
                     body: formData
                 })
