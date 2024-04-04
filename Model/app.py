@@ -34,6 +34,10 @@ def preprocess_image(img):
     img_array = img_array.reshape(1, 150, 150, 3)
     return img_array
 
+@app.route('/predict/hello', methods=['GET'])
+def hello():
+    return jsonify({'prediction': 'Hello'})
+
 @app.route('/predict/pneumonia', methods=['POST'])
 def predict_pneumonia():
     if 'image' not in request.files:
