@@ -18,7 +18,6 @@ class_labels = ['Healthy', 'Osteoporosis']
 image_gen = ImageDataGenerator(
     preprocessing_function=tf.keras.applications.mobilenet_v2.preprocess_input)
 
-
 @app.route('/predict', methods=['POST'])
 def predict():
     # Check if the request contains the image file

@@ -10,21 +10,17 @@ import tensorflow as tf
 import base64
 
 app = Flask(__name__)
-allowed_origins = [
-    'http://127.0.0.1:5500',
-    'https://fit-buddy-app.vercel.app/' 
-]
-
+allowed_origins = '*'
 CORS(app, origins=allowed_origins)
 
-# Load Pneumonia prediction model
-pneumonia_model = load_model('../Model/PNEUMONIA/Model/Pneumonia.h5')
+# PNEUMONIA 
+pneumonia_model = load_model('./PNEUMONIA/Model/Model.h5')
 
-# Load Osteoporosis prediction model
-osteoporosis_model = load_model('../Model/OSTEOPOROSIS/Model/Osteoporosis.h5')
+# OSTEOPOROSIS
+osteoporosis_model = load_model('./OSTEOPOROSIS/Model/Model.h5')
 
-# Load brain tumor prediction model
-brain_tumor_model = load_model('../Model/BRAIN TUMOR/Model/model.h5')
+# BRAIN TUMOR
+brain_tumor_model = load_model('./BRAIN TUMOR/Model/Model.h5')
 
 image_gen = ImageDataGenerator(preprocessing_function=tf.keras.applications.mobilenet_v2.preprocess_input)
 
@@ -83,4 +79,7 @@ def predict_osteoporosis():
     class_labels = ['Healthy', 'Osteoporosis']
     pred_class = class_labels[np.argmax(pred)]
     return jsonify({'prediction': pred_class})
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0',debug=True)
 
